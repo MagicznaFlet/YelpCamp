@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Object <%= campground.title%>
+    <h1>Title: <%= campground.title%>
     </h1>
     <p>Price:<%= campground.price%>
     </p>
@@ -16,6 +16,10 @@
     </p>
     <p>Id:<%= campground._id%>
     </p>
+    <footer>
+        <p><a href="/campgrounds/<%=campground._id%>/edit">Edit</a></p>
+        <p><a href="/campgrounds/">Back to Campgrounds</a></p>
+    </footer>
 </body>
 
 </html>
