@@ -71,5 +71,5 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
 
 
 app.listen(3000, () => {
-    console.log('LISTENING ON PORT 3000')
+    console.log('LISTENING ON PORT http://127.0.0.1:3000')
 })
