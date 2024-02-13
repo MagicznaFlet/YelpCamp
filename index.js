@@ -33,10 +33,14 @@ app.get('/campgrounds', async (req, res) => {
     res.render('campgrounds/index', { campgrounds })
 })
 
-app.post('/campgrounds', async (req, res) => {
-    const campground = new Campground(req.body.campground)
-    await campground.save()
-    res.redirect(`campgrounds/${campground._id}`)
+app.post('/campgrounds', async (req, res, next) => {
+    try {
+        const campground = new Campground(req.body.campground)
+        await campground.save()
+        res.redirect(`campgrounds/${campground._id}`)
+    } catch (e) {
+        next(e)
+    }
 })
 
 app.get('/campgrounds/new', async (req, res) => {
@@ -69,6 +73,9 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
     res.render('campgrounds/edit', { campground })
 })
 
+app.use((err, req, res, next) => {
+    res.send("Something went wrong")
+})
 
 app.listen(3000, () => {
     console.log('LISTENING ON PORT http://127.0.0.1:3000')
