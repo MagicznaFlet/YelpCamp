@@ -64,12 +64,6 @@ app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => 
     res.redirect(`/campgrounds/${id}`)
 }))
 
-app.get('/campgrounds/:id/edit', catchAsync(async (req, res) => {
-    const { id } = req.params
-    const campground = await Campground.findOne({ _id: id })
-    res.render('campgrounds/edit', { campground })
-}))
-
 app.all('*', (req, res, next) => {
     next(new ExpressError("Page Not Found", 404))
 })

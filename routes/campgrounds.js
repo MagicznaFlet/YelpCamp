@@ -52,4 +52,10 @@ router.delete('/:id', catchAsync(async (req, res) => {
     res.redirect('/campgrounds')
 }))
 
+router.get('/:id/edit', catchAsync(async (req, res) => {
+    const { id } = req.params
+    const campground = await Campground.findOne({ _id: id })
+    res.render('campgrounds/edit', { campground })
+}))
+
 module.exports = router
