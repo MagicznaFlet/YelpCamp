@@ -3,7 +3,7 @@
         <div class="text-center">Edit Campground</div>
         <div class="col-6 offset-3">
             <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate
-                class="validated-form needs-validation">
+                class="validated-form needs-validation" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title:</label>
                     <input class="form-control" type="text" id="title" name="campground[title]"
@@ -33,14 +33,36 @@
                     </div>
 
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label" for="image">Image Url:</label>
-                    <input class="form-control" type="text" id="image" name="campground[image]"
-                        value="<%= campground.image %>" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
+                    <label for="image" class="form-label">Add image:</label>
+                    <input class="form-control" type="file" name="image" id="image" multiple>
+                    <small id="fileLabel" class="form-text text-muted">No files selected</small>
                 </div>
+                
+                <script>
+                    const input = document.getElementById('image');
+                    const fileLabel = document.getElementById('fileLabel');
+
+                    input.addEventListener('change', () => {
+                        if (input.files.length === 0) {
+                            fileLabel.textContent = "No files selected";
+                        } else {
+                            fileLabel.textContent = [...input.files].map(f => f.name).join(", ");
+                        }
+                    });
+                </script>
+
+                <div class="mb-3">
+                    <% campground.images.forEach((img,i)=>{ %>
+                        <img src="<%=img.thumbnail%>" class="img-thumbnail" alt=""/>
+                        <div class="form-check-inline">
+                            <input type="checkbox" name="deleteImages[]" id="image-<%=i%>" value="<%=img.filename%>">
+                        </div>
+                        <label for="image-<%=i%>">Delete?</label>
+                    <% })%>
+                </div>
+
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
                     <textarea class="form-control" name="campground[description]" id="description" cols="30" rows="5"

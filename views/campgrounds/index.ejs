@@ -4,12 +4,12 @@
         <a href="/campgrounds/new">Add Campground</a>
     </div>
     <% for(let campground of campgrounds){%>
-        <div class="card mb-3">
+        <div class="card">
             <div class="row">
                 <div class="col-md-4">
-                    <img class="img-fluid" src="<%= campground.image %>" alt="">
+                    <img class="img-fluid w-100 h-100 object-fit-contain" src="<%= campground.images[0].url %>" alt="">
                 </div>
-                <div class="col-mg-8">
+                <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">
                             <%=campground.title%>
