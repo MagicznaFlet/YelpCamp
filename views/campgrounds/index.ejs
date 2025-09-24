@@ -7,7 +7,9 @@
         <div class="card">
             <div class="row">
                 <div class="col-md-4">
+                    <% if(campground.images.length > 0){%>
                     <img class="img-fluid w-100 h-100 object-fit-contain" src="<%= campground.images[0].url %>" alt="">
+                    <%}%>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
