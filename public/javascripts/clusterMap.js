@@ -90,7 +90,7 @@ map.on('load', function () {
     map.on('click', 'unclustered-point', function (e) {
         const { popUpMarkup } = e.features[0].properties;
         const coordinates = e.features[0].geometry.coordinates.slice();
-
+        console.log(popUpMarkup)
         // Ensure that if the map is zoomed out such that
         // multiple copies of the feature are visible, the
         // popup appears over the copy being pointed to.
@@ -105,6 +105,7 @@ map.on('load', function () {
     });
 
     map.on('mouseenter', 'clusters', () => {
+        console.log('cluster')
         map.getCanvas().style.cursor = 'pointer';
     });
     map.on('mouseleave', 'clusters', () => {
